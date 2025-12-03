@@ -1,5 +1,50 @@
-data/raw/
-data/processed/
+# =========================
+# Python
+# =========================
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.env
+.venv
+venv/
+
+# =========================
+# Jupyter / IPython
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# Spark / Hadoop
+# =========================
+metastore_db/
+derby.log
+spark-warehouse/
+*.crc
+
+# =========================
+# Data files (generated)
+# =========================
+data/raw/
+data/processed/
+*.parquet
+*.csv
+
+# =========================
+# Docker
+# =========================
+*.log
+
+# =========================
+# OS / Editor
+# =========================
+.DS_Store
+Thumbs.db
 .vscode/
+.idea/
+
+# =========================
+# Git
+# =========================
+.gitkeep
