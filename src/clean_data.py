@@ -39,7 +39,7 @@ population_cleaned.write \
     .option("header", True) \
     .csv(f"{PROCESSED_DIR}/population_cleaned")
 
-print("✅ Population data cleaned successfully")
+print(" Population data cleaned successfully")
 
 # ===========================
 # CO2 CLEANING
@@ -63,6 +63,6 @@ co2_cleaned.write \
     .option("header", True) \
     .csv(f"{PROCESSED_DIR}/co2_cleaned")
 
-print("✅ CO2 data cleaned successfully")
+print(" CO2 data cleaned successfully")
 
 spark.stop()
