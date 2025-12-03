@@ -1,56 +1,40 @@
 import os
-import json
 import requests
-from datetime import datetime, timezone
-import zipfile
-import io
+import pandas as pd
 
-def fetch_datasets():
-    data_dir = os.path.join("data", "raw")
-    os.makedirs(data_dir, exist_ok=True)
+RAW_DATA_DIR = "data/raw"
+os.makedirs(RAW_DATA_DIR, exist_ok=True)
 
-    datasets = {
-        "arms_imports": "https://api.worldbank.org/v2/en/indicator/MS.MIL.MPRT.KD?downloadformat=csv",
-        "air_quality": "https://api.openaq.org/v2/measurements?country=IN&limit=1000&format=csv"
-    }
+DATASETS = {
+    "population": "https://raw.githubusercontent.com/datasets/population/master/data/population.csv",
+    "co2_emissions": "https://raw.githubusercontent.com/datasets/co2-fossil-global/master/global.csv"
+}
 
-    for name, url in datasets.items():
-        print(f"⬇️ Downloading {name} dataset...")
+def fetch_and_store(name, url):
+    print(f"Downloading {name} dataset...")
+    
+    response = requests.get(url)
+    response.raise_for_status()
+    
+    csv_path = os.path.join(RAW_DATA_DIR, f"{name}.csv")
+    
+    with open(csv_path, "wb") as f:
+        f.write(response.content)
 
-        try:
-            response = requests.get(url, timeout=30)
-            response.raise_for_status()
+    print(f"Saved CSV: {csv_path}")
 
-            if name == "arms_imports" and url.endswith("csv"):
-                file_path = os.path.join(data_dir, f"{name}.csv")
-                with open(file_path, "wb") as f:
-                    f.write(response.content)
-            elif name == "arms_imports":
-                # World Bank ZIP file
-                z = zipfile.ZipFile(io.BytesIO(response.content))
-                z.extractall(data_dir)
-                file_path = os.path.join(data_dir, "World Bank Arms Imports Data (unzipped)")
-            else:
-                file_path = os.path.join(data_dir, f"{name}.csv")
-                with open(file_path, "wb") as f:
-                    f.write(response.content)
+    # Optional: Convert to Parquet
+    df = pd.read_csv(csv_path)
+    parquet_path = os.path.join(RAW_DATA_DIR, f"{name}.parquet")
+    df.to_parquet(parquet_path, index=False)
 
-            meta = {
-                "dataset": name,
-                "source_url": url,
-                "downloaded_at": datetime.now(timezone.utc).isoformat()
-            }
+    print(f"Saved Parquet: {parquet_path}\n")
 
-            meta_path = os.path.join(data_dir, f"{name}_meta.json")
-            with open(meta_path, "w", encoding="utf-8") as f:
-                json.dump(meta, f, indent=4)
+def main():
+    for name, url in DATASETS.items():
+        fetch_and_store(name, url)
 
-            print(f"✅ {name} saved successfully.")
-            print(f"📝 Metadata saved to {meta_path}")
-
-        except requests.exceptions.RequestException as e:
-            print(f"❌ Failed to download {name}: {e}")
+    print("✅ All datasets downloaded and stored successfully.")
 
 if __name__ == "__main__":
-    fetch_datasets()
-
+    main()

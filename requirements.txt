@@ -1,0 +1,4 @@
+pandas
+requests
+pyarrow
+pyspark==3.5.1
