@@ -1,5 +1,3 @@
-# Big Data Project Template
-
 ## Project Overview
 Build a Big Data project using Python, PySpark and Docker. The workflow includes:
 
@@ -49,19 +47,19 @@ pick **2 or more datasets**, define a **research question or hypothesis** and im
 ---
 
 ### Module 3. Data Analysis & Visualization
-**Objective:** Explore and analyze cleaned datasets to answer the research question.
+**Objective:** To explore and analyze cleaned datasets in order to identify trends, relationships, and insights related to CO₂ emissions and population.
 
 **Tasks:**
-- Load processed data in Jupyter Notebook
-- Perform descriptive statistics, correlations, aggregations or regression or other appropiate analysis methods
-- Visualize using Matplotlib, Seaborn or Plotly
-- Document findings and interpretations in notebook cells
+- Loaded processed datasets into Jupyter Notebook
+- Performed descriptive statistics and aggregation
+- Conducted correlation analysis
+- Created visualizations using Matplotlib and Seaborn
+- Documented findings and interpretations
 
 **Deliverables:**
-- Jupyter Notebook(s) in `/notebooks/`
-- Plots and charts illustrating key insights
-- Problem statement, explanation and conclusion in the README.md
-
+- Jupyter Notebook: `notebooks/Module3_Analysis.ipynb`
+- Plots illustrating trends and relationships
+- Statistical analysis and conclusions
 ---
 
 ## Technologies
@@ -77,37 +75,6 @@ pick **2 or more datasets**, define a **research question or hypothesis** and im
 - Module 3 is executed in Jupyter Notebook (no Docker required)
 - End goal: automated pipeline from data fetching → cleaning → analysis → insights
 
-## Git Configuration
-- Use `.gitignore` file to prevent large or sensitive files, cache files and any other unnecessary files and folders from being committed.
-- Do not commit raw or processed datasets to the repository.
-- Do not commit python cache files, notebook checkpoints, virtual environments
-- Only commit scripts, notebooks, Docker setup and README.
-- Do not commit raw or processed datasets to the repository.
-- Only commit scripts, notebooks, Docker setup and README.
 
----
 
-## To Get Started
-
-1. **Fork the Template**:
-   - Click **Use this template → Create a new repository**.
-   - Select the organization namespace for the forked repository.
-
-2. **Clone Your Repository**:
-   ```bash
-   git clone https://github.com/<your-username>/<your-repo>.git
-   cd <your-repo> 
-   ```
-3. **Work Locally**:
-	- Implement data fetching, cleaning and analysis in your forked repo.
-	- Commit and push changes to your repository
-
-4. **(optional) Pull Updates from Template (if updated)**:
-	- Add the template repository as an upstream remote:
-
-	```bash
-	git remote add upstream https://github.com/<org-name>/big-data-template.git
-	git fetch upstream
-	git merge upstream/main
-	```
 
