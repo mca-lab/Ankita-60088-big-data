@@ -6,7 +6,7 @@ Build a Big Data project using Python, PySpark and Docker. The workflow includes
 3. Analysis and visualization
 4. Reproducible Docker-based setup for data collection and processing
 
-pick **2 or more datasets**, define a **research question or hypothesis** and implement the pipeline.
+pick **2  datasets**, define a **research question or hypothesis** and implement the pipeline.
 
 ---
 
@@ -16,10 +16,10 @@ pick **2 or more datasets**, define a **research question or hypothesis** and im
 **Objective:** Automate downloading datasets and storing them for processing.
 
 **Tasks:**
-- Choose 2+ public datasets (Kaggle, Data.gov, WHO, World Bank, UCI, etc.)
+- Choose 2 public datasets (Kaggle, Data.gov, WHO, World Bank, UCI, etc.)
 - Write Python script to fetch datasets dynamically (URLs, APIs, Kaggle datasets)
 - Store raw datasets in `data/raw/`
-- Optional: convert datasets to Parquet for efficient storage
+- Converted datasets to Parquet for efficient storage
 - Docker container ensures uniform data collection environment
 
 **Deliverables:**
@@ -35,7 +35,7 @@ pick **2 or more datasets**, define a **research question or hypothesis** and im
 **Tasks:**
 - Load raw datasets into PySpark
 - Handle missing values, inconsistent formats, duplicates
-- Merge, join or aggregate datasets as required
+- Merge, join or aggregate datasets 
 - Store processed data in `data/processed/`
 - Docker container ensures reproducible cleaning pipeline
 
